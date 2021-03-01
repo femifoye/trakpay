@@ -36,7 +36,7 @@ module TrakPay
         payee.each do | pay |
             total += pay[:license][:price].to_f
         end
-        return total
+        total
     end
 
     def self.new_payload(payee, bank, secret)
@@ -57,7 +57,7 @@ module TrakPay
     def self.process_payment(payment)
         percent_off = 0
         final_amt = nil
-        amt_after_processing_fee = payment[:total] - (( payment[:processing_fee] / 100) * payment[:total])
+        amt_after_processing_fee = payment[:total] - (( payment[:processing_fee].to_f / 100) * payment[:total])
         if payment[:subscription][:plan] == "FREE"
             percent_off = 20.0
             final_amt = amt_after_processing_fee - ( ( percent_off / 100 ) * amt_after_processing_fee )
