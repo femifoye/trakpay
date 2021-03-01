@@ -12,7 +12,7 @@ module TrakPay
                 payees.push([item])
             else
                 for grp in payees
-                    group = grp.select{|g| g[:user_id] == item[:user_id]}
+                    group = grp.select{|g| g[:user_id] == item["user_id"]}
                     if group.length > 0
                         grp.push(item)
                         append = false
